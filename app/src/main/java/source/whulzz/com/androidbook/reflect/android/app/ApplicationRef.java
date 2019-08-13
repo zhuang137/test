@@ -4,6 +4,8 @@ import android.content.Context;
 
 import utils.helper.reflect.FieldRef;
 import utils.helper.reflect.FieldRefType;
+import utils.helper.reflect.MethodRef;
+import utils.helper.reflect.MethodRefType;
 import utils.helper.reflect.RefClassInit;
 
 public class ApplicationRef {

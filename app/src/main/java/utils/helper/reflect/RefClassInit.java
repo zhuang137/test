@@ -28,14 +28,12 @@ public class RefClassInit {
                 if (fieldAnnotation != null) {
                     String name = fieldAnnotation.name();
                     if (TextUtils.isEmpty(name)) continue;
-                    ;
                     Field targetField = null;
                     Class tmpClass = targetClass;
                     do {
                         try {
-                            targetField = tmpClass.getField(name);
+                            targetField = tmpClass.getDeclaredField(name);
                             if (targetField != null) break;
-                            ;
                         } catch (NoSuchFieldException e) {
                             tmpClass = tmpClass.getSuperclass();
                         }
@@ -82,9 +80,8 @@ public class RefClassInit {
                 Class tmpClass = targetClass;
                 do {
                     try {
-                        targetMethod = tmpClass.getMethod(name, paramsTypes);
+                        targetMethod = tmpClass.getDeclaredMethod(name, paramsTypes);
                         if (targetMethod != null) break;
-                        ;
                     } catch (NoSuchMethodException e) {
                         tmpClass = tmpClass.getSuperclass();
                     }

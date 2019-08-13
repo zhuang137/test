@@ -23,8 +23,8 @@ public class ActivityThreadRef {
         sClass = RefClassInit.init(CLASS_NAME, ActivityThreadRef.class);
     }
 
-    @FieldRef(name="mResourcesManager")
-    public static FieldRefType<Object> mResourcesManager;
+    @FieldRef(name="mInstrumentation")
+    public static FieldRefType<Instrumentation> mInstrumentation;
 
     @FieldRef(name="mInitialApplication")
     public static FieldRefType<Application> mInitialApplication;
@@ -32,8 +32,8 @@ public class ActivityThreadRef {
     @FieldRef(name="mBoundApplication")
     public static FieldRefType<Object> mBoundApplication;
 
-    @FieldRef(name="mInstrumentation")
-    public static FieldRefType<Instrumentation> mInstrumentation;
+    @FieldRef(name="mAllApplications")
+    public static FieldRefType<List<Application>> mAllApplications;
 
     @MethodRef(name="currentActivityThread", value={})
     public static MethodRefType<Object> currentActivityThread;
@@ -42,13 +42,12 @@ public class ActivityThreadRef {
             @RefTypeItem(name="android.content.pm.ApplicationInfo"),
             @RefTypeItem(name="android.content.res.CompatibilityInfo")
     })
+    public static MethodRefType2<Object> getPackageInfoNoCheck;
 
     @MethodRef(name="installContentProviders", value={
             Context.class, List.class
     })
     public static MethodRefType<Void> installContentProviders;
-
-    public static MethodRefType2<Object> getPackageInfoNoCheck;
 
     public static class AppBindDataRef {
         private static final String CLASS_NAME = "android.app.ActivityThread$AppBindData";
@@ -59,5 +58,8 @@ public class ActivityThreadRef {
 
         @FieldRef(name="providers")
         public static FieldRefType<List<ProviderInfo>> providers;
+
+        @FieldRef(name="info")
+        public static FieldRefType<Object> info;
     }
 }

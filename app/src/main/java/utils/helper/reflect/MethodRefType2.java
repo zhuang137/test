@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 public class MethodRefType2<T> extends BaseMethodRefType {
     Method mTarget;
 
-    public void targetMethod(Method target) {
+    void targetMethod(Method target) {
         mTarget = target;
         if (mTarget != null) {
             mTarget.setAccessible(true);

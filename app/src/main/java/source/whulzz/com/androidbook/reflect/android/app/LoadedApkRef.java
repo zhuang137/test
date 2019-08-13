@@ -2,6 +2,7 @@ package source.whulzz.com.androidbook.reflect.android.app;
 
 import android.app.Application;
 import android.app.Instrumentation;
+import android.content.pm.ApplicationInfo;
 
 import utils.helper.reflect.FieldRef;
 import utils.helper.reflect.FieldRefType;
@@ -18,6 +19,9 @@ public class LoadedApkRef {
         sClass = RefClassInit.init(CLASS_NAME, LoadedApkRef.class);
     }
 
-    @MethodRef(name="makeApplication", value={boolean.class, Instrumentation.class})
-    public static MethodRefType<Application> makeApplication;
+    @FieldRef(name="mApplicationInfo")
+    public static FieldRefType<ApplicationInfo> mApplicationInfo;
+
+    @FieldRef(name="mApplication")
+    public static FieldRefType<Application> mApplication;
 }

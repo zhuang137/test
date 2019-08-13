@@ -4,5 +4,5 @@ import java.lang.reflect.Method;
 
 public abstract class BaseMethodRefType {
     private Method mTarget;
-    public abstract void targetMethod(Method target);
+    abstract void targetMethod(Method target);
 }
