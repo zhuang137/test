@@ -26,6 +26,11 @@ android {
             path "CMakeLists.txt"
         }
     }
+    sourceSets {
+        main {
+            java.srcDirs=['src/main/java']
+        }
+    }
 }
 
 dependencies {

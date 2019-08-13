@@ -17,16 +17,17 @@ public class PathClassLoaderRef {
     public static FieldRefType<ClassLoader> parent;
 
     public static ClassLoader newInstance(String dexPath, ClassLoader parent) {
+        ClassLoader newLoader = null;
         if (sClass != null) {
             try {
                 Constructor constructor = sClass.getDeclaredConstructor(String.class, ClassLoader.class);
                 constructor.setAccessible(true);
-                ClassLoader loader = (ClassLoader) constructor.newInstance(dexPath, parent);
-                loader.loadClass("xx.yy.zz");
+                newLoader = (ClassLoader) constructor.newInstance(dexPath, parent);
+                newLoader.loadClass("xx.yy.zz");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return null;
+        return newLoader;
     }
 }

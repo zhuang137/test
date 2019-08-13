@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-
 import java.io.File;
 import java.util.List;
-
 import dalvik.system.DexClassLoader;
 import source.whulzz.com.androidbook.reflect.android.app.ActivityThreadRef;
 import source.whulzz.com.androidbook.reflect.android.app.LoadedApkRef;
@@ -44,7 +42,7 @@ public class DexApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         try {
-            File obbDir = getApplicationContext().getObbDir();
+            File obbDir = base.getObbDir();
             File apkFile = new File(obbDir, "base.apk");
             if (apkFile.exists()) {
                 isReplaceApp = true;
@@ -83,7 +81,6 @@ public class DexApplication extends Application {
         super.onCreate();
         if (mRealApplication != null) {
             Object activityThread = ActivityThreadRef.currentActivityThread.invoke(null);
-            ActivityThreadRef.mInstrumentation.get(activityThread).callApplicationOnCreate(mRealApplication);
             ActivityThreadRef.mInitialApplication.set(activityThread, mRealApplication);
             Object mBoundApplication = ActivityThreadRef.mBoundApplication.get(activityThread);
             Object loadedApk = ActivityThreadRef.AppBindDataRef.info.get(mBoundApplication);
@@ -98,6 +95,7 @@ public class DexApplication extends Application {
                     mAllApplications.add(0, mRealApplication);
                 }
             }
+            ActivityThreadRef.mInstrumentation.get(activityThread).callApplicationOnCreate(mRealApplication);
         }
     }
 }
